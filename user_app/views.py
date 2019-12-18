@@ -4,5 +4,5 @@ from django.shortcuts import render
 def display(request):
     return render(request,'user_app/display.html') #render template
 
-    def ndex(request):
+def index(request):
     return render(request,'user_app/index.html') #render template
