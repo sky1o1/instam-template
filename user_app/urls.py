@@ -17,10 +17,12 @@ from django.contrib import admin
 from django.urls import path
 
 #importing index from photo app
-from .views import display, index 
+from .views import display, index, loginauth,logout
 
+app_name = 'user'
 urlpatterns = [
     #path('',index) #specifying path from view
     # path('display/', display),
-    # path('', index)
+     path('login/', loginauth, name='login'),
+     path('logout/', logout,name='logout')
 ]

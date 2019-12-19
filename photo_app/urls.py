@@ -17,10 +17,13 @@ from django.contrib import admin
 from django.urls import path
 
 #importing index from photo app
-from photo_app.views import index
+from photo_app.views import index, add, edit 
+app_name = 'photo_app' 
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    
     #path('',index) #specifying path from view
-    path('',index),
+    path('',index, name='index'),
+    path('add',add,name='add'),
+    path('edit/<int:id>/',edit,name='edit'),
 ]

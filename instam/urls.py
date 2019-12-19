@@ -27,4 +27,5 @@ urlpatterns = [
     path('',include('photo_app.urls')),
     path('user/',include('user_app.urls')),
     
+    
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

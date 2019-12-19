@@ -6,12 +6,21 @@
     {% endblock %}  
 
     {% block content%}
+
     {% for up in upload%}
     <img src="{{up.photo.url}}" alt="foto" style="height: 390px; width: 630px;">
     <h1>{{up.photo}}</h1>
-    <h1>{{up.caption}}</h1>
-    <h1>{{up.user}}</h1>
-    <h1>{{up.timestamp}}</h1>
-    <h1>{{up.likes}}</h1>
+    <h6>{{up.caption}}</h6>
+    <h6>{{up.user}}</h6>
+    <h6>{{up.timestamp}}</h6>
+    <a href="{% url 'photo_app:edit' up.id %}">Edit</a>
+    <h6>{{up.likes}}</h6>
+    
+
+    {%for com in comments%}
+    <h6>{{com.comment}}</h6><br>
+    <h1>{{com.commented_by}}</h1> at <h1>{{com.ctimestamp}}</h1>
+    <h1>{{com.parent_post}}</h1>
+    {% endfor %}
     {% endfor %}
     {% endblock %}
