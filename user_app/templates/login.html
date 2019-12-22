@@ -1,24 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% load staticfiles %}
+    <link rel='stylesheet' href="{% static 'css/style.css' %}">
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Login </title>
 </head>
 <body>
+    <div class="row">
+
         <form action="" method="POST">
             {% csrf_token %}
         <div class="login text-center">
-        <h1>Login to your account</h1></div><br>
-      Email:<br>
-      <input type="text" class="form-control" name="email">
+        <h1 style="color: rgb(97, 97, 236);">Login</h1></div><br>
+       Email <br>
+      <input type="text" class="form-control" name="email" style="margin-left: 40px">
       <br>
       Password:<br>
-      <input type="password" class="form-control" name="pass">
+      <input type="password" class="form-control" name="pass" style="margin-left: 40px">
       <!-- <small><a href="#">Forgot password</a></small> -->
       <br><br>
-        <button type="submit" name="login" class="btn btn-success">Login</button>
+      <button type="submit" name="login" class="btn btn-success" style="display: inline-block;
+      padding: 10px 30px;
+      border-radius: 200px;
+      background-color:#f39d12;
+      border: 1px #f39c12;" >Login</button>
+      
     </form>
+</div>
 </body>
 </html>

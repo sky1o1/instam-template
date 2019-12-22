@@ -1,0 +1,8 @@
+
+
+.row{
+    max-width: 1140px;
+    margin: 100px 500px 0 500px; background-color: rgb(204, 163, 163);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px; 
+}

@@ -3,13 +3,24 @@ from django.http import HttpResponse
 from .models import PhotoModel
 from .models import CommentModel
 from .forms import PhotoForm
+from user_app.models import UserModel
 
 # Create your views here.
 def index(request):
     if 'id' in request.session:
         upload = PhotoModel.objects.all()
-        comment = CommentModel.objects.all()
-        return render(request,'photo_app/index.html',{'upload':upload,'comment':comment})
+        #comment = CommentModel.objects.all()
+        return render(request,'photo_app/index.html',{'upload':upload,})#'comment':comment
+    else:
+        return redirect('user:login')    
+
+def profile(request):
+    if 'id' in request.session:
+        user_id = request.session['id']
+        upload = PhotoModel.objects.filter(uploaded_by = user_id)
+        user = UserModel.objects.get(id = user_id)
+        dict = {'upload': upload,'user': user}
+        return render(request,'photo_app/profile.html',dict)
     else:
         return redirect('user:login')    
         
@@ -48,4 +59,8 @@ def edit(request,id):
         # form = PhotoForm
         return render(request,'photo_app/edit_photo.html',{'photo':photo})
     
+def delete(request,id):
+    photo = PhotoModel.objects.get(id=id)
+    photo.delete()
+    return redirect('photo_app:profile')
 

@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path
 
 #importing index from photo app
-from photo_app.views import index, add, edit 
+from photo_app.views import index, add, edit, profile, delete
 app_name = 'photo_app' 
 
 urlpatterns = [
@@ -25,5 +25,7 @@ urlpatterns = [
     #path('',index) #specifying path from view
     path('',index, name='index'),
     path('add',add,name='add'),
+    path('profile/',profile,name='profile'),
     path('edit/<int:id>/',edit,name='edit'),
+    path('delete/<int:id>/',delete,name='delete'),
 ]
