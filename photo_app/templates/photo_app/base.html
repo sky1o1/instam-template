@@ -21,7 +21,9 @@
             </a>
             <div class="navigation__search-container">
                 <i class="fa fa-search"></i>
-                <input type="text" placeholder="Search">
+                <form action="{% url 'photo_app:search' %}" method="GET">
+                     <input id="search-bar" type="text" placeholder="Search" name="q">
+                 </form>
             </div>
             <div class="navigation__icons">
                 <a href="explore.html" class="navigation__link">
@@ -62,5 +64,9 @@
   integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
   crossorigin="anonymous"></script>
         <script src="{% static 'js/app.js'%}"></script>
+
+        <!-- {% block javascript %}
+
+        {% endblock %} -->
     </body>
 </html>

@@ -3,55 +3,104 @@
 
 {% block main_content %}
 
-<main class="feed">
+    <main class="feed">
 
-    {% for up in upload%}
-        <section class="photo">
-        <header class="photo__header">
-            <div class="photo__header-column">
+        {% for up in upload %}
+            <section class="photo">
+            <header class="photo__header">
+                <div class="photo__header-column">
+                    <img
+                        class="photo__avatar"
+                        src="{{up.uploaded_by.photo.url}}"
+                    />
+                </div>
+                <div class="photo__header-column">
+                    <span class="photo__username">{{up.uploaded_by.username}}</span>
+                    <span class="photo__location">{{up.caption}}</span>
+                </div>
+            </header>
+            <div class="photo__file-container">
                 <img
-                    class="photo__avatar"
-                    src="{{up.uploaded_by.photo.url}}"
+                    class="photo__file"
+                    src="{{up.photo.url}}"
                 />
             </div>
-            <div class="photo__header-column">
-                <span class="photo__username">{{up.uploaded_by.username}}</span>
-                <span class="photo__location">{{up.caption}}</span>
+            <div class="photo__info">
+                <div class="photo__icons">
+                    <span class="photo__icon">
+                        <i class="fa fa-heart-o heart fa-lg"></i>
+                    </span>
+                    <span class="photo__icon">
+                        <i class="fa fa-comment-o fa-lg"></i>
+                    </span>
+                </div>
+                <span class="photo__likes">{{up.comments.all|length}} galler{{up.comments.all|pluralize:"y,ies"}} </span>
+                <ul class="photo__comments">
+    
+                    {% for comment in up.comments.all|slice:":2" %}
+                        <li class="photo__comment">
+                            <span class="photo__comment-author">{{comment.commented_by.username}}</span>{{comment.comment}}
+                        </li>
+                    {% endfor%}
+                    
+                </ul>
+                <span class="photo__time-ago">{{up.timestamp}}</span>
+                <div class="photo__add-comment-container">
+                    <textarea placeholder="Add a comment..." class="photo__add-comment"></textarea>
+                    <i class="fa fa-ellipsis-h"></i>
+                </div>
             </div>
-        </header>
-        <div class="photo__file-container">
-            <img
-                class="photo__file"
-                src="{{up.photo.url}}"
-            />
-        </div>
-        <div class="photo__info">
-            <div class="photo__icons">
-                <span class="photo__icon">
-                    <i class="fa fa-heart-o heart fa-lg"></i>
-                </span>
-                <span class="photo__icon">
-                    <i class="fa fa-comment-o fa-lg"></i>
-                </span>
-            </div>
-            <span class="photo__likes">{{up.comments.all|length}} galler{{up.comments.all|pluralize:"y,ies"}} </span>
-            <ul class="photo__comments">
-
-                {% for comment in up.comments.all|slice:":2" %}
-                    <li class="photo__comment">
-                        <span class="photo__comment-author">{{comment.commented_by.username}}</span>{{comment.comment}}
-                    </li>
-                {% endfor%}
-                
-            </ul>
-            <span class="photo__time-ago">{{up.timestamp}}</span>
-            <div class="photo__add-comment-container">
-                <textarea placeholder="Add a comment..." class="photo__add-comment"></textarea>
-                <i class="fa fa-ellipsis-h"></i>
-            </div>
-        </div>
-        </section>
-    {% endfor%}
-</main>
+            </section>
+        {% endfor%}
+    </main>
 
 {% endblock %}
+
+<!-- {% block javascript %}
+
+
+onmouseover="increase()" onmouseout="decrease()" id="img1"
+<script type="text/javascript">
+    
+    var width=100
+    var difference=2
+    var intervalID=0
+
+    function increase()
+    {
+        clearInterval(intervalID);
+        intervalID = setInterval(zoomIn,20);
+    }
+    function zoomIn()
+    {
+        if (width<200)
+        {
+            width = width + difference;
+            document.getElementById('img1').style.width=width;
+        }
+        else
+        {
+            clearInterval(intervalID);
+        }
+    }
+
+    function decrease)
+    {
+        clearInterval(intervalID);
+        intervalID = setInterval(zoomOut,20);
+    }
+    function zoomOut()
+    {
+        if (width>100)
+        {
+            width = width - difference;
+            document.getElementById('img1').style.width=width;
+        }
+        else
+        {
+            clearInterval(intervalID);
+        }
+    }
+   </script>
+
+{% endblock %} -->
